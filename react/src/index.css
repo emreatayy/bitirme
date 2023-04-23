@@ -49,13 +49,13 @@ body {
     left: 0;
     padding: 10px 0;
     font-size: 16px;
-    color: white;
+    color: #fff;
     pointer-events: none;
     transition: .5s;
 }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid label{
+
+.login-box .user-box input:focus ~ label {
     top: -20px;
     left: 0;
     color: #03e9f4;
@@ -65,16 +65,33 @@ body {
 .login-box form a {
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
+    margin-top: 20px;
     color: #03e9f4;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.login-box form button {
+    position: relative;
+    display: inline-block;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
     letter-spacing: 4px;
-    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    padding: 10px 20px;
+}
+
+.login-box > form >:last-child{
+    padding: 10px 20px;
 }
 
 .login-box a:hover {
@@ -129,7 +146,7 @@ body {
     }
 }
 
-.login-box  a span:nth-child(3) {
+.login-box a span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
