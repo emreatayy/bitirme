@@ -25,7 +25,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => [
                 'required',
-                Rule::exists('user', 'email')
+                Rule::exists('users', 'email')
             ],
             'password' => 'required',
             'remember' => 'boolean'

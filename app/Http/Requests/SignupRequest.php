@@ -13,7 +13,7 @@ class SignupRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,13 +28,13 @@ class SignupRequest extends FormRequest
                 'required',
                 'email',
                 'string',
-                Rule::unique('user', 'email')],
+                Rule::unique('users', 'email')],
             'name' => 'required|string',
             'surname' => 'required|string',
             'username' => [
                 'required',
                 'string',
-                Rule::unique('user', 'username')],
+                Rule::unique('users', 'username')],
             'password' => [
                 'required',
                 'confirmed',
