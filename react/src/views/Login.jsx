@@ -9,7 +9,7 @@ export default function Login(){
     return(
         <div className="login-box">
             <h2>Login</h2>
-            <form>
+            <form onClick={onSubmit}>
                 <div className="user-box">
                     <input type="text" name="" required="" />
                     <label className="label">Username</label>
@@ -18,14 +18,14 @@ export default function Login(){
                     <input type="password" name="" required="" />
                     <label className="label">Password</label>
                 </div>
-                <a href="#">
+                <button className="button" type="submit">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    Submit
-                </a>
-                <Link to="/Signup">Do not have an account?</Link>
+                    GİRİŞ Yap
+                </button>
+                <Link to="/Signup">Hesabınız yok mu?</Link>
             </form>
         </div>
     )

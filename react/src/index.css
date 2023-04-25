@@ -37,7 +37,7 @@ body {
     padding: 10px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     border: none;
     border-bottom: 1px solid #fff;
     outline: none;
@@ -62,9 +62,11 @@ body {
     font-size: 12px;
 }
 
+
 .login-box p{
     color: #e81a1a;
-    padding: 3px;
+    padding: 0.5px;
+    font-size: x-small;
 }
 .login-box button:hover{
     background: #03e9f4;

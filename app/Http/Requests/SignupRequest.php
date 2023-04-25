@@ -24,17 +24,17 @@ class SignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => [
-                'required',
-                'email',
-                'string',
-                Rule::unique('users', 'email')],
             'name' => 'required|string',
             'surname' => 'required|string',
             'username' => [
                 'required',
                 'string',
                 Rule::unique('users', 'username')],
+            'email' => [
+                'required',
+                'email',
+                'string',
+                Rule::unique('users', 'email')],
             'password' => [
                 'required',
                 'confirmed',
