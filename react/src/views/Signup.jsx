@@ -5,7 +5,7 @@ import {useStateContext} from "../context/ContextProvider.jsx";
 
 
 export default function Signup() {
-    const { setCurrentUser, setUserToken } = useStateContext();
+    const { setUser, setToken } = useStateContext();
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [username, setUsername] = useState("");
@@ -21,10 +21,9 @@ export default function Signup() {
     function label(id){
        const element = document.getElementById(id);
         if(element){
-        element.style = "color:red;" +
-                        "top: -20px;\n" +
+        element.style = "    top: -20px;" +
                         "    left: 0;\n" +
-                        "    color: #03e9f4;\n" +
+                        "    color: #078807;\n" +
                         "    font-size: 12px;";
         }
     }
@@ -47,8 +46,8 @@ export default function Signup() {
                 password_confirmation: passwordConfirmation,
             })
             .then(({ data }) => {
-                setCurrentUser(data.user)
-                setUserToken(data.token)
+                setUser(data.user)
+                setToken(data.token)
             })
             .catch((error) => {
                 if (error.response.data.errors.email) {
@@ -78,7 +77,7 @@ export default function Signup() {
     return(
 
         <div className="login-box">
-            <h2>Signup</h2>
+            <h2>Kayıt Ol</h2>
             <form onSubmit={onSubmit} method="post">
                 {nameErrors && (<p dangerouslySetInnerHTML={nameErrors}></p>)}
                 <div className="user-box">

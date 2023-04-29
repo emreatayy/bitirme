@@ -4,22 +4,25 @@ const StateContext = createContext(
     {
         user: null,
         token: null,
+        lessons: null,
         setUser: () => {},
         setToken: () => {},
+        setLessons: () => [],
     }
 )
 
 export const ContextProvider =  ({children}) =>{
+    const [lessons, setLessons] = useState([]);
     const [user, setUser] = useState({});
-    const [token, _setToken] = useState(null);
+    const [token, _setToken] = useState(localStorage.getItem('TOKEN') || '');
 
     const setToken = (token) => {
         _setToken(token)
         if (token){
-            localStorage.setItem('ACCESS_TOKEN', token);
+            localStorage.setItem('TOKEN', token);
         }
         else{
-            localStorage.removeItem('ACCESS_TOKEN')
+            localStorage.removeItem('TOKEN')
         }
     }
 
@@ -27,8 +30,10 @@ export const ContextProvider =  ({children}) =>{
         <StateContext.Provider value={{
             user,
             token,
+            lessons,
             setUser,
-            setToken
+            setToken,
+            setLessons
         }}>
             {children}
         </StateContext.Provider>

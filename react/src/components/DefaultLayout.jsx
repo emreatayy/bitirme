@@ -1,31 +1,51 @@
 import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../context/ContextProvider.jsx";
+import axiosClient from "../axios.js";
+import {useEffect} from "react";
+import css from "../home.css?inline";
+css
+
 
 export default function DefaultLayout(){
-    const {user, token} = useStateContext()
+
+    const { user, token, lessons, setUser, setToken, setLessons} = useStateContext()
 
     if (!token){
         return  <Navigate to="/login" />
     }
+    const onLogout = (ev) => {
+        ev.preventDefault();
+        axiosClient.post("/logout").then((res) => {
+            setUser({});
+            setToken(null);
+        });
+    };
+    useEffect(() => {
+        axiosClient.get('/me')
+            .then(({ data }) => {
+                setUser(data)
+            })
+    }, [])
 
-    const onLogout = (ev) =>{
-        ev.preventDefault()
-    }
+
 
     return(
         <div id="defaultLayout">
             <aside>
-                <Link to="/dashboard" >Dashboard</Link>
-                <Link to="/users" >Users</Link>
+                <Link className="link" to="/lessons" >Dashboard</Link>
+                <Link className="link" to="/users" >Users</Link>
+                <div>
+                    <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+                </div>
             </aside>
             <div className="content">
                 <header>
                     <div>
                         Header
                     </div>
+                    <p>{user.name} {user.surname}</p>
                     <div>
-                        {user.name}
-                        <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+
                     </div>
                 </header>
                 <main>

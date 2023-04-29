@@ -1,7 +1,10 @@
+
+
 export default function Users(){
+
     return(
         <div>
-            Users
+            <p>User</p>
         </div>
     )
 }
