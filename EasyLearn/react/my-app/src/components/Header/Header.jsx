@@ -47,7 +47,7 @@ const Header = () => {
           <div className="navigation d-flex align-items-center justify-content-between">
             <div className="logo">
               <h2 className=" d-flex align-items-center gap-1">
-                <i class="ri-pantone-line"></i> FıratDemmy
+              <i class="ri-school-line"></i> EasyLearn
               </h2>
             </div>
   
