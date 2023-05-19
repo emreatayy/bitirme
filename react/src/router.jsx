@@ -1,24 +1,49 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
-import DefaultLayout from "./components/DefaultLayout";
-import GuestLayout from "./components/GuestLayout";
-import Login from "./views/Login";
-import NotFound from "./views/NotFound";
-import Signup from "./views/Signup";
-import Dashboard from "./views/Dashboard.jsx";
+import Login from "./views/Login.jsx";
+import Index from "./views/index.jsx";
+import Signup from "./views/Signup.jsx";
+import NotFound from "./views/NotFound.jsx";
+import GuestLayout from "./components/GuestLayout.jsx";
+import Lessons from "./views/Lessons.jsx";
+import Forum from "./views/forum.jsx";
+import Messages from "./views/Messages.jsx";
+import Calendar from "./views/Calendar.jsx";
+import Education from "./views/Education.jsx";
+import DefaultLayout from "./components/DefaultLayout.jsx";
 import Users from "./views/Users.jsx";
+import MainPage from "./views/MainPage.jsx";
+import Sss from "./views/sss.jsx";
+import AboutUs from "./views/aboutUs.jsx"
+
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <DefaultLayout/>,
     children: [
       {
         path: '/',
-        element: <Navigate to="/dashboard"/>
+        element: <MainPage/>
       },
       {
-        path: '/dashboard',
-        element: <Dashboard/>
+        path: '/lessons',
+        element: <Lessons/>
+      },
+      {
+        path: '/lessons',
+        element: <Lessons/>
+      },
+      {
+        path: '/messages',
+        element: <Messages/>
+      },
+      {
+        path: '/forum',
+        element: <Forum/>
+      },
+      {
+        path: '/calendar',
+        element: <Calendar/>
       },
       {
         path: '/users',
@@ -27,9 +52,29 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/',
+    path: "/",
     element: <GuestLayout/>,
     children: [
+      {
+        path: "/",
+        element: <Index />
+      },
+      {
+        path: "/index",
+        element: <Index />
+      },
+      {
+        path: "/sss",
+        element: <Sss />
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />
+      },
+      {
+        path: "/index",
+        element: <Index />
+      },
       {
         path: '/login',
         element: <Login/>
@@ -37,13 +82,18 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup/>
-      }
+      },
+      {
+        path: '/educations',
+        element: <Education/>
+      },
     ]
   },
   {
-    path: "*",
+    path: '*',
     element: <NotFound/>
-  }
+  },
 ])
+
 
 export default router;

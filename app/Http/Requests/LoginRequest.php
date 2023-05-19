@@ -3,20 +3,28 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
-    public function authorize()
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
     {
         return true;
     }
-    public function rules()
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
+    public function rules(): array
     {
         return [
-            'email' => 'required|email|string|exists:users,email',
-            'password' => [
-                'required',
-            ],
+            'email' => 'required',
+            'password' => 'required',
             'remember' => 'boolean'
         ];
     }
