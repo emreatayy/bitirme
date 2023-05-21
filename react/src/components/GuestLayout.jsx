@@ -37,13 +37,13 @@ export default function GuestLayout() {
                   !open && "scale-0"
                 }`}
               >
-                Designer
+                Hoşgeldiniz
               </h1>
             </div>
             <ul className="pt-6 ">
               <li
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/index" className="flex flex-row">
+                className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/index" className="flex flex-row emrebaba p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -56,8 +56,8 @@ export default function GuestLayout() {
               </li>
 
               <li
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/educations" className="flex flex-row">
+                className={`flex  rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/educations" className="flex flex-row emrebaba p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -69,8 +69,8 @@ export default function GuestLayout() {
                 </Link>
               </li>
               <li
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/aboutus" className="flex flex-row">
+                className={`flex  rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/aboutus" className="flex flex-row emrebaba p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -81,8 +81,8 @@ export default function GuestLayout() {
                 </Link>
               </li>
               <li
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/sss" className="flex flex-row">
+                className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/sss" className="flex flex-row emrebaba p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -94,14 +94,27 @@ export default function GuestLayout() {
                 </Link>
               </li>
               <li
-                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/login" className="flex flex-row">
+                className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/login" className="flex flex-row emrebaba p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
-                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"/>
+                          d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
                   </svg>
+
                   <span className={`${!open && "hidden"} origin-left duration-200 ml-3`}>Giriş Yap
+              </span>
+                </Link>
+              </li>
+              <li
+                className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
+                <Link to="/signup" className="flex flex-row emrebaba p-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                       stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round"
+                          d="M12 9.75v6.75m0 0l-3-3m3 3l3-3m-8.25 6a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"/>
+                  </svg>
+                  <span className={`${!open && "hidden"} origin-left duration-200 ml-3`}>Kayıt Ol
               </span>
                 </Link>
               </li>

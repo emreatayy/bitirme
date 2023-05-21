@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {useEffect, useState} from "react";
+import "../../src/styles/mainPage.css"
 
 function Users() {
   const [id, setId] = useState('');
@@ -99,120 +100,124 @@ function Users() {
   }
 
   return (
-    <div>
-      <h1>Employee Details</h1>
-      <div className="container mt-4">
-        <form>
-          <div className="form-group">
-            <input type="text" className="form-control" id="id" hidden
-                   value={id}
-                   onChange={(event) => {
-                     setId(event.target.value);
-                   }}
-            />
-            <div>
-              <label>Kullanıcı Email</label>
-              <input type="text" className="form-control" id="email"
-                     value={email}
-                     onChange={(event) => {
-                       setEmail(event.target.value);
-                     }}
-              />
-            </div>
-            <div>
-              <label>Kullanıcı Adı</label>
-              <input type="text" className="form-control" id="name"
-                     value={name}
-                     onChange={(event) => {
-                       setName(event.target.value);
-                     }}
-              />
-            </div>
+    <>
+      <form className="userForm">
+        <div className="grid gap-6 mb-6 md:grid-cols-2">
+          <div>
 
-          </div>
-          <div className="form-group">
-            <label>Kullanıcı Soy Adı</label>
-            <input type="text" className="form-control" id="surname"
-                   value={surname}
+            <label htmlFor="first_name"
+                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ad</label>
+            <input type="text" id="first_name"
+                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="John" required
+                   value={name}
                    onChange={(event) => {
-                     setSurname(event.target.value);
-                   }}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Username</label>
-            <input type="text" className="form-control" id="username"
-                   value={username}
-                   onChange={(event) => {
-                     setUsername(event.target.value);
-                   }}
-            />
-          </div>
-          <div className="form-group">
-            <label>Şifre</label>
-            <input type="text" className="form-control" id="password"
-                   value={password}
-                   onChange={(event) => {
-                     setPassword(event.target.value);
-                   }}
-            />
-          </div>
-          <div className="form-group">
-            <label>Rol</label>
-            <input type="text" className="form-control" id="role"
-                   value={role}
-                   onChange={(event) => {
-                     setRole(event.target.value);
-                   }}
-            />
+                     setName(event.target.value);
+                   }}/>
           </div>
 
           <div>
-            <button className="btn btn-primary mt-4" onClick={save}>Register</button>
-            <button className="btn btn-warning mt-4" onClick={update}>Update</button>
+            <label htmlFor="last_name"
+                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Soyad</label>
+            <input type="text" id="last_name"
+                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Doe" required
+                   value={surname}
+                   onChange={(event) => {
+                     setSurname(event.target.value);
+                   }}/>
           </div>
-        </form>
+          <div>
+            <label htmlFor="last_name"
+                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <input type="email" id="last_name"
+                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Doe" required
+                   value={email}
+                   onChange={(event) => {
+                     setEmail(event.target.value);
+                   }}/>
+          </div>
+          <div>
+            <label htmlFor="last_name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kullanıcı
+              Adı</label>
+            <input type="text" id="last_name"
+                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Doe" required
+                   value={username}
+                   onChange={(event) => {
+                     setUsername(event.target.value);
+                   }}/>
+          </div>
+          <div>
+            <label htmlFor="last_name"
+                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rolü</label>
+            <input type="text" id="last_name"
+                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Doe" required
+                   value={role}
+                   onChange={(event) => {
+                     setRole(event.target.value);
+                   }}/>
+          </div>
+        </div>
+        <button onClick={save}
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+          Register
+        </button>
+        <button onClick={update}
+                className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+          Update
+        </button>
+      </form>
+
+      <div className="userList">
+        <table className="" align="center">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Kullanıcı Adı</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Option</th>
+          </tr>
+          </thead>
+          {users.map(function fn(user) {
+            return (
+              <tbody>
+              <tr>
+                <th scope="row">{user.id} </th>
+                <td>{user.email}</td>
+                <td>{user.name}</td>
+                <td>{user.surname}</td>
+                <td>{user.username}</td>
+                <td>{user.role}</td>
+
+                <td>
+                  <button onClick={() => editEmployee(user)}
+                          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Edit
+                  </button>
+                  <button onClick={() => DeleteEmployee(user.id)}
+                          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            );
+          })}
+        </table>
       </div>
-
-      <table className="table table-dark" align="center">
-        <thead>
-        <tr>
-          <th scope="col">Kullanıcı Id---</th>
-          <th scope="col">Kullanıcı Email---</th>
-          <th scope="col">Kullanıcı Adı---</th>
-          <th scope="col">Kullanıcı Soyadı---</th>
-          <th scope="col">Kullanıcı Username---</th>
-          <th scope="col">Kullanıcı Şifre---</th>
-          <th scope="col">Kullanıcı Rol---</th>
-
-          <th scope="col">Option</th>
-        </tr>
-        </thead>
-        {users.map(function fn(user) {
-          return (
-            <tbody>
-            <tr>
-              <th scope="row">{user.id} </th>
-              <td>{user.email}</td>
-              <td>{user.name}</td>
-              <td>{user.surname}</td>
-              <td>{user.username}</td>
-              <td>{user.password}</td>
-              <td>{user.role}</td>
-
-              <td>
-                <button type="button" className="btn btn-warning" onClick={() => editEmployee(user)}>Edit</button>
-                <button type="button" className="btn btn-danger" onClick={() => DeleteEmployee(user.id)}>Delete
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          );
-        })}
-      </table>
-    </div>
+    </>
   );
 }
 
 export default Users;
+
+
+/*
+*
+* */
