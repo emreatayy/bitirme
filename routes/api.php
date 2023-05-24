@@ -25,4 +25,5 @@ Route::middleware('')->group(function (){
 });
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/home' , [LessonController::class, 'index']);
+Route::get('/lessons' , [LessonController::class, 'index']);
+Route::get('/lesson/{lesson:slug}' , [LessonController::class, 'lesson']);

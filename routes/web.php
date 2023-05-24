@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/home' , [LessonController::class, 'index']);
+Route::get('/lessons' , [LessonController::class, 'index']);
+Route::get('/lesson/{lesson:slug}' , [LessonController::class, 'lesson']);
 Route::get('/' , [AuthController::class, 'me']);
