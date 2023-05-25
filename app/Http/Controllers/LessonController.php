@@ -33,11 +33,13 @@ class LessonController extends Controller
     public function lesson(Lesson $lesson)
     {
         $categories = $lesson->categories($lesson);
+        $lectures = $lesson->lectures($lesson);
         return response
         ([
             'categories' => $categories,
             'user' => $lesson->user,
-            'lesson' => $lesson
+            'lesson' => $lesson,
+            'lectures' => $lectures
         ]);
     }
 }

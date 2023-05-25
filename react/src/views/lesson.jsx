@@ -13,7 +13,7 @@ export default function Lesson(){
         axiosClient.get(`${uri}`)
             .then(({data})  => {
                 setLesson(data.lesson);
-                setAuthor(data.lesson.user)
+                setAuthor(data.user)
                 setCategories(data.categories)
             })
             .catch((error) =>{
