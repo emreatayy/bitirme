@@ -1,12 +1,11 @@
-import React, {useState} from "react";
-import "../../src/styles/defaultLayout.css"
+import React from "react";
+import "../styles/aboutUs.css"
 
 
 export default function aboutUs() {
 
   return (
     <>
-
       <div className="wrapper">
         <div className="typing-demo">
           Biz kimiz ve ne yapıyoruz ?

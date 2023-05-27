@@ -3,7 +3,6 @@ import {useState} from "react";
 import axiosClient from "../axios.js";
 import {useStateContext} from "../context/ContextProvider.jsx";
 
-
 export default function Login() {
   const {setUser, setToken} = useStateContext();
   const [email, setEmail] = useState("");

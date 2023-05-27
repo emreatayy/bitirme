@@ -1,0 +1,18 @@
+.lessonsContainer{
+  width: 100%;
+  height: 93vh;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.lessonsContainer img{
+  object-fit: contain;
+  background-color: #e5e5e5;
+}
+
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.lessonsContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+}

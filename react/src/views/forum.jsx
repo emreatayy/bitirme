@@ -1,7 +1,11 @@
-export default function lessons(){
-    return(
-        <div>
-            Forum
-        </div>
-    )
+import React, {} from "react";
+
+
+export default function forum() {
+
+  return (
+    <>
+      form
+    </>
+  )
 }

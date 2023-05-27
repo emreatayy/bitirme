@@ -36,7 +36,6 @@ export default function Signup() {
     setPasswordError({__html: ""});
     setEmailError({__html: ""});
 
-
     axiosClient
       .post("/signup", {
         email,

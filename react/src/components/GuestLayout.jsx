@@ -6,7 +6,7 @@ import "../styles/defaultLayout.css"
 export default function GuestLayout() {
   const {token} = useStateContext()
   if (token) {
-    return <Navigate to="/"/>
+    return <Navigate to="/main"/>
   }
   const [open, setOpen] = useState(true);
 
@@ -20,14 +20,14 @@ export default function GuestLayout() {
             } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
           >
             <img
-              src="./src/assets/control.png"
+              src="../../src/assets/control.png"
               className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
               onClick={() => setOpen(!open)}
             />
             <div className="flex gap-x-4 items-center">
               <img
-                src="./src/assets/logo.png"
+                src="../../src/assets/logo.png"
                 className={`cursor-pointer duration-500 ${
                   open && "rotate-[360deg]"
                 }`}
@@ -43,7 +43,7 @@ export default function GuestLayout() {
             <ul className="pt-6 ">
               <li
                 className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/index" className="flex flex-row emrebaba p-2">
+                <Link to="/index" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -54,23 +54,21 @@ export default function GuestLayout() {
               </span>
                 </Link>
               </li>
-
               <li
                 className={`flex  rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/educations" className="flex flex-row emrebaba p-2">
+                <Link to="/allLessons" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
                           d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
                   </svg>
-
                   <span className={`${!open && "hidden"} origin-left duration-200 ml-3`}>Eğitimler
               </span>
                 </Link>
               </li>
               <li
                 className={`flex  rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/aboutus" className="flex flex-row emrebaba p-2">
+                <Link to="/aboutus" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -82,7 +80,7 @@ export default function GuestLayout() {
               </li>
               <li
                 className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/sss" className="flex flex-row emrebaba p-2">
+                <Link to="/sss" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -95,7 +93,7 @@ export default function GuestLayout() {
               </li>
               <li
                 className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/login" className="flex flex-row emrebaba p-2">
+                <Link to="/login" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
@@ -108,7 +106,7 @@ export default function GuestLayout() {
               </li>
               <li
                 className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
-                <Link to="/signup" className="flex flex-row emrebaba p-2">
+                <Link to="/signup" className="flex flex-row menuBtns p-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
                        stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round"
