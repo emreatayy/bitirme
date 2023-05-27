@@ -163,7 +163,7 @@ export default function StudentLayout() {
                   {Name}
               </h1>
             </div>
-            <ul className="pt-6 ">
+            <ul className="pt-6">
               <li
                 className={`flex rounded-md cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4`}>
                 <Link to="/index" className="flex flex-row emrebaba p-2">

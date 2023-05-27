@@ -67,4 +67,11 @@ class AuthController extends Controller
         return $request->user();
     }
 
+    public function MyFavorites(Request $request)
+    {
+        $user = $request->user();
+        $favorites = $user->favorites;
+        return $favorites;
+    }
+
 }

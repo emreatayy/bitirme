@@ -15,7 +15,7 @@ class LessonController extends Controller
 {
     public function index()
     {
-        $lessons = Lesson::latest()->filter(request(['search', 'teacher']))->get();
+        $lessons = Lesson::latest()->filter(request(['search', 'teacher', 'category']))->get();
         $response[]=null;
         $count=0;
         foreach ($lessons as $lesson) {

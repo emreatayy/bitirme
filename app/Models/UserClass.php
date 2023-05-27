@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserClass extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
 }
