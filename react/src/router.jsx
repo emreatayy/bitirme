@@ -16,6 +16,8 @@ import AboutUs from "./views/aboutUs.jsx"
 import LessonLayout from "./components/lessonLayout.jsx"
 import AllLessons from "./views/allLessons.jsx";
 import LessonInfoLayout from "./components/LessonInfoLayout.jsx";
+import EditLesson from "./views/EditLesson.jsx";
+import AddLesson from "./views/AddLesson.jsx";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +98,14 @@ const router = createBrowserRouter([
         path: '/lessonzInfo/*',
         element: <LessonInfoLayout/>,
       },
+      {
+        path: "editlesson",
+        element: <EditLesson/>,
+      },
+      {
+        path: "addlesson",
+        element: <AddLesson/>
+      }
     ]
   },
   {

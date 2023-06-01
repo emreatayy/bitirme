@@ -46,7 +46,6 @@ input[type="radio"]{
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.8s, padding 0.8s;
-
 }
 
 .accordion input[type="radio"]:checked + label + .content{

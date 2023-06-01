@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 
