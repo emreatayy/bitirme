@@ -15,11 +15,11 @@ const FreeCourseCard = (props) => {
 
         <div className=" d-flex align-items-center gap-5">
           <span className=" d-flex align-items-center gap-2">
-            <i class="ri-user-line"></i> {students}k
+            <i className="ri-user-line"></i> {students}k
           </span>
 
           <span className=" d-flex align-items-center gap-2">
-            <i class="ri-star-fill"></i> {rating}k
+            <i className="ri-star-fill"></i> {rating}k
           </span>
         </div>
       </div>

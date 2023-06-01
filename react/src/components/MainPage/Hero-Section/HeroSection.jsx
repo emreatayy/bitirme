@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import {Container,Row,Col} from 'reactstrap';
 import heroImg from '../image/hero-img2.png';
 import './hero-section.css';
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 const HeroSection = () =>{
     const [search, setSearch] = useState("");
     return <section>

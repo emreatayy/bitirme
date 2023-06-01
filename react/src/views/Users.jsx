@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React, {useEffect, useState} from "react";
+import "../styles/users.css"
+import axiosClient from "../axios.js";
+import Admin from "../components/Admin.jsx";
 
-function Users() {
-  const [id, setId] = useState('');
-  const [email, setEmail] = useState('');
+export default function Users() {
+  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -16,203 +18,167 @@ function Users() {
   }, []);
 
   async function Load() {
-    const result = await axios.get(
-      "http://127.0.0.1:8000/api/users");
+    const result = await axiosClient.get(
+      "/users");
     setUsers(result.data);
-    console.log(result.data);
   }
 
-  async function save(event) {
-    event.preventDefault();
-    try {
-      await axios.post("http://127.0.0.1:8000/api/save",
-        {
-          email: email,
-          name: name,
-          surname: surname,
-          username: username,
-          password: password,
-          role: role,
-        });
-      alert("User Registation Successfully");
-      setEmail("");
-      setName("");
-      setSurname("");
-      setUsername("");
-      setPassword("");
-      setRole("");
-      Load();
-
-    } catch (err) {
-      alert("User Registation Failedy");
-    }
-  }
-
-  async function editEmployee(users) {
+  async function editUser(users) {
     setId(users.id);
     setEmail(users.email);
     setName(users.name);
     setSurname(users.surname);
     setUsername(users.username);
-    setPassword(users.password);
     setRole(users.role);
-  }
-
-
-  //Silme
-  async function DeleteEmployee(id) {
-    await axios.delete("http://127.0.0.1:8000/api/delete/" + id);
-    alert("Employee deleted Successfully");
-    await Load();
   }
 
   //update
   async function update(event) {
     event.preventDefault();
 
-    try {
-
-      await axios.put("http://127.0.0.1:8000/api/update/" + users.find(u => u.id === id).id || id,
+      axiosClient.patch("/user",
         {
           id: id,
-          email: email,
           name: name,
           surname: surname,
           username: username,
-          password: password,
           role: role,
+        }).then(() => {
+        window.location.pathname = "/admin/users";
+      });
+  }
+  async function del(event){
+    event.preventDefault();
 
-        });
-      alert("Registation Updateddddd");
-      setId("");
-      setEmail("");
-      setName("");
-      setSurname("");
-      setUsername("");
-      setPassword("");
-      setRole("");
-      await Load();
-
-    } catch (err) {
-      alert("User Registation Failedx");
-    }
+    axiosClient.delete("/user",
+      {
+        data: {
+          username: username
+        }
+      });
   }
 
   return (
-    <div>
-      <h1>Employee Details</h1>
-      <div className="container mt-4">
-        <form>
-          <div className="form-group">
-            <input type="text" className="form-control" id="id" hidden
-                   value={id}
-                   onChange={(event) => {
-                     setId(event.target.value);
-                   }}
-            />
+      <Admin>
+      <div className="userContainer">
+        <form className="userForm">
+          <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-              <label>Kullanıcı Email</label>
-              <input type="text" className="form-control" id="email"
-                     value={email}
-                     onChange={(event) => {
-                       setEmail(event.target.value);
-                     }}
-              />
-            </div>
-            <div>
-              <label>Kullanıcı Adı</label>
-              <input type="text" className="form-control" id="name"
+
+              <label htmlFor="first_name"
+                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Ad</label>
+              <input type="text" id="first_name"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Ad" required
                      value={name}
                      onChange={(event) => {
                        setName(event.target.value);
-                     }}
-              />
+                     }}/>
             </div>
 
+            <div>
+              <label htmlFor="last_name"
+                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Soyad</label>
+              <input type="text" id="last_name"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Soyad" required
+                     value={surname}
+                     onChange={(event) => {
+                       setSurname(event.target.value);
+                     }}/>
+            </div>
+            <div>
+              <label htmlFor="last_name"
+                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Email</label>
+              <input type="email" id="last_name"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="E-mail" required
+                     value={email}
+                     onChange={(event) => {
+                       setEmail(event.target.value);
+                     }}/>
+            </div>
+            <div>
+              <label htmlFor="last_name" className="block mb-2 text-sm font-medium
+              text-gray-900 dark:text-blue">Kullanıcı
+                Adı</label>
+              <input type="text" id="last_name"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Kullanıcı Adı" required
+                     value={username}
+                     onChange={(event) => {
+                       setUsername(event.target.value);
+                     }}/>
+            </div>
+            <div>
+              <label htmlFor="last_name"
+                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Rolü</label>
+              <input type="text" id="last_name"
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     placeholder="Rol" required
+                     value={role}
+                     onChange={(event) => {
+                       setRole(event.target.value);
+                     }}/>
+            </div>
           </div>
-          <div className="form-group">
-            <label>Kullanıcı Soy Adı</label>
-            <input type="text" className="form-control" id="surname"
-                   value={surname}
-                   onChange={(event) => {
-                     setSurname(event.target.value);
-                   }}
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Username</label>
-            <input type="text" className="form-control" id="username"
-                   value={username}
-                   onChange={(event) => {
-                     setUsername(event.target.value);
-                   }}
-            />
-          </div>
-          <div className="form-group">
-            <label>Şifre</label>
-            <input type="text" className="form-control" id="password"
-                   value={password}
-                   onChange={(event) => {
-                     setPassword(event.target.value);
-                   }}
-            />
-          </div>
-          <div className="form-group">
-            <label>Rol</label>
-            <input type="text" className="form-control" id="role"
-                   value={role}
-                   onChange={(event) => {
-                     setRole(event.target.value);
-                   }}
-            />
-          </div>
-
-          <div>
-            <button className="btn btn-primary mt-4" onClick={save}>Register</button>
-            <button className="btn btn-warning mt-4" onClick={update}>Update</button>
-          </div>
+          <button onClick={update}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Update
+          </button>
+          <button onClick={del}
+                  className="ml-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Delete
+          </button>
         </form>
-      </div>
-
-      <table className="table table-dark" align="center">
-        <thead>
-        <tr>
-          <th scope="col">Kullanıcı Id---</th>
-          <th scope="col">Kullanıcı Email---</th>
-          <th scope="col">Kullanıcı Adı---</th>
-          <th scope="col">Kullanıcı Soyadı---</th>
-          <th scope="col">Kullanıcı Username---</th>
-          <th scope="col">Kullanıcı Şifre---</th>
-          <th scope="col">Kullanıcı Rol---</th>
-
-          <th scope="col">Option</th>
-        </tr>
-        </thead>
-        {users.map(function fn(user) {
-          return (
-            <tbody>
+        <div className="userList">
+          <table className="userTable">
+            <thead>
             <tr>
-              <th scope="row">{user.id} </th>
-              <td>{user.email}</td>
-              <td>{user.name}</td>
-              <td>{user.surname}</td>
-              <td>{user.username}</td>
-              <td>{user.password}</td>
-              <td>{user.role}</td>
-
-              <td>
-                <button type="button" className="btn btn-warning" onClick={() => editEmployee(user)}>Edit</button>
-                <button type="button" className="btn btn-danger" onClick={() => DeleteEmployee(user.id)}>Delete
-                </button>
-              </td>
+              <th scope="col">Id</th>
+              <th scope="col">Email</th>
+              <th scope="col">Ad</th>
+              <th scope="col">Soyad</th>
+              <th scope="col">Kullanıcı Adı</th>
+              <th scope="col">Rol</th>
+              <th scope="col">Option</th>
             </tr>
-            </tbody>
-          );
-        })}
-      </table>
-    </div>
+            </thead>
+            {users.map(function fn(user) {
+              return (
+                <tbody>
+                <tr>
+                  <th scope="row">{user.id} </th>
+                  <td>{user.email}</td>
+                  <td>{user.name}</td>
+                  <td>{user.surname}</td>
+                  <td>{user.username}</td>
+                  <td>{
+                    user.role == 0 ? (
+                      <p>Öğrenci</p>
+                    ) : (
+                      user.role == 1 ? (
+                        <p>Öğretmen</p>
+                      ) : (
+                        <p>Admin</p>
+                      )
+                    )
+                  }</td>
+
+                  <td>
+                    <button onClick={() => editUser(user)}
+                            className="bg-transparent hover:bg-blue-500 text-blue-700
+                            font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </div>
+      </div>
+      </Admin>
   );
 }
-
-export default Users;

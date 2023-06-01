@@ -3,36 +3,77 @@ import Login from "./views/Login.jsx";
 import Index from "./views/index.jsx";
 import Signup from "./views/Signup.jsx";
 import NotFound from "./views/NotFound.jsx";
-import GuestLayout from "./components/layout/GuestLayout.jsx";
+import GuestLayout from "./components/GuestLayout.jsx";
 import Lessons from "./views/Lessons.jsx";
 import Forum from "./views/forum.jsx";
 import Messages from "./views/Messages.jsx";
 import Calendar from "./views/Calendar.jsx";
-import Education from "./views/Education.jsx";
-import DefaultLayout from "./components/layout/DefaultLayout.jsx";
+import DefaultLayout from "./components/DefaultLayout.jsx";
 import Users from "./views/Users.jsx";
 import MainPage from "./views/MainPage.jsx";
 import Sss from "./views/sss.jsx";
 import AboutUs from "./views/aboutUs.jsx"
+import AdminLayout from "./components/AdminLayout.jsx";
+import LessonLayout from "./components/lessonLayout.jsx"
+import AllLessons from "./views/allLessons.jsx";
 import Lesson from "./views/lesson.jsx";
+import MyLessons from "./views/MyLessons.jsx";
 
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/home',
+    element: <MainPage/>,
+  },
+  {
+    path: "/lessons",
+    element: <AllLessons/>
+  },
+  {
+    path: "/lesson/*",
+    element: <Lesson/>
+  },
+  {
+    path: "/sss",
+    element: <Sss/>
+  },
+  {
+    path: "/aboutus",
+    element: <AboutUs/>
+  },
+  {
+    path: '*',
+    element: <NotFound/>
+  },
+  {
+    element: <GuestLayout/>,
+    children: [
+      {
+        path: '/login',
+        element: <Login/>
+      },
+      {
+        path: '/signup',
+        element: <Signup/>
+      },
+    ]
+  },
+  {
     element: <DefaultLayout/>,
     children: [
       {
-        path: '/',
-        element: <MainPage/>
-      },
-        {
-            path: '/educations',
-            element: <Education />
-        },
-      {
-        path: '/lessons',
-        element: <Lessons/>
+        path: "/admin",
+        element: <AdminLayout/>,
+        children: [
+          {
+            path: '/admin',
+            element: <MainPage/>
+          },
+          {
+            path: 'users',
+            element: <Users/>
+          },
+        ]
       },
       {
         path: '/messages',
@@ -47,66 +88,15 @@ const router = createBrowserRouter([
         element: <Calendar/>
       },
       {
-        path: '/users',
-        element: <Users/>
+        path: 'MyLessons',
+        element: <MyLessons/>
       },
-        {
-            path: '/lesson/*',
-            element: <Lesson />
-        },
+      {
+        path: '/lesson/content/*',
+        element: <LessonLayout/>,
+      },
     ]
-  },
-  {
-    path: "/",
-    element: <GuestLayout/>,
-    children: [
-      {
-        path: "/",
-        element: <Index />
-      },
-      {
-        path: "/index",
-        element: <Index />
-      },
-      {
-        path: "/sss",
-        element: <Sss />
-      },
-      {
-        path: "/aboutus",
-        element: <AboutUs />
-      },
-        {
-            path: '/lessons',
-            element: <Lessons/>
-        },
-      {
-        path: "/index",
-        element: <Index />
-      },
-      {
-        path: '/login',
-        element: <Login/>
-      },
-      {
-        path: '/signup',
-        element: <Signup/>
-      },
-      {
-        path: '/educations',
-        element: <Education/>
-      },
-        {
-            path: '/lesson/*',
-            element: <Lesson />
-        },
-    ]
-  },
-  {
-    path: '*',
-    element: <NotFound/>
   },
 ])
-
 
 export default router;

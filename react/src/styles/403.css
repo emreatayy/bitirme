@@ -1,0 +1,23 @@
+.message{
+  height: 754px;
+  width: 100%;
+  background: #1a202c;
+}
+.message .content{
+  position: absolute;
+  color: white;
+  font-size: xx-large;
+  width: 900px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.message .info{
+  position: absolute;
+  color: white;
+  font-size: x-large;
+  width: 900px;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

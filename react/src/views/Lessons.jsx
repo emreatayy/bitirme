@@ -1,86 +1,81 @@
 import {useStateContext} from "../context/ContextProvider.jsx";
 import React, {useEffect, useState} from "react";
 import axiosClient from "../axios.js";
-import resim from "../assets/baydırman.jpeg";
-import {Link, Route} from "react-router-dom";
-import "../components/layout/styles/as.css";
+import {Link, Navigate} from "react-router-dom";
+import "../styles/lessons.css"
+import "../styles/loadingAnimation.css"
 
-export default function lessons() {
-    const {lessons, setLessons} = useStateContext();
-    const [kontrol, setKontrol] = useState(false);
-    const [favorites, setFavorites] = useState(null);
-    function favorite(slug){
-        axiosClient.post(`/favorite`, {
-            slug
-        })}
+//Sadece Öğrenciler Girebilir
+export default function Lessons() {
+  const {user, setUser, userClasses, setUserClasses, lessons, setLessons} = useStateContext()
+  useEffect(() => {
+    axiosClient.get('/me')
+      .then(({data}) => {
+        setUser(data)
+      })
+    axiosClient.get('/user_classes')
+      .then(({data}) => {
+        setUserClasses(data)
+      })
+    axiosClient.get('/lessons')
+      .then(({data}) => {
+        setLessons(data)
+      })
+  }, [])
 
-    const uri = window.location.search;
-    useEffect(() => {
-        axiosClient.get('/MyFavorites')
-            .then(({data}) =>{
-                setFavorites(data);
-            })
-        axiosClient.get(`/lessons${uri}`)
-            .then(({data}) => {
-                setLessons(data);
-                setKontrol(true);
-            });
-    }, []);
+  const myId = user.id;
+  const myLessonsId = [];
+  const myLessons = []
 
-    function onSubmit(link){
-        window.location.search = link;
+  userClasses.map(x => {
+    if (myId === x.user_id) {
+      myLessonsId.push(x.lessons_id);
     }
+  })
 
+
+  lessons.map(x => {
+    myLessonsId.map(y => {
+      if (x.id === y) {
+        myLessons.push(x)
+      }
+    })
+  })
+
+  if (user.role !== 0) {
+    return <Navigate to="/"/>
+  } else {
     return (
-        <div className="mainPage">
-            <h1>Eğitimler</h1>
-            {kontrol ? (
-                lessons[0] != null ? (
-                    <ul className="cards">
-                        {lessons.map((lesson, index) => {
-                            return (
-                                <div key={index}>
-                                    <li className="cards_item">
-                                        <div className="card">
-                                            <div className="card_image"><img src={resim} alt="baydrıman"/></div>
-                                            <div className="card_content">
-                                                {lesson.categories.map((category, index) => {
-                                                    return (
-                                                        <div key={index}>
-                                                            <button className="link"
-                                                                    onClick={() => onSubmit("?category=" + category.slug)}>
-                                                                <p>Category Name: {category.name}</p>
-                                                            </button>
-                                                        </div>
-                                                    );
-                                                })}
-                                                <h2 className="card_title">{lesson.lesson.title}</h2>
-                                                <button type="submit" onClick={() =>favorite(lesson.lesson.slug)}>
-                                                            favorilere ekle
-                                                    </button>
-                                                <p className="card_text">{lesson.lesson.excerpt}</p>
-                                                <button onClick={() => onSubmit("?teacher="+lesson.lesson.user.username)}
-                                                    className="btn card_btn">
-                                                    <p className="card_text">
-                                                        {lesson.lesson.user.name + " " + lesson.lesson.user.surname}</p>
-                                                </button>
-                                                <button className="btn card_btn">
-                                                    <Link className="link"
-                                                          to={"/lesson/" + lesson.lesson.slug}>İncele</Link>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </div>
-                            );
-                        })}
-                    </ul>
-                ) : (
-                    <h6 className="text-center">Aradığınız eğitimler bulunamadı.</h6>
-                )
-            ) : (
-                <h6 className="text-center">Lütfen Bekleyiniz.</h6>
-            )}
-        </div>
+      <>
+        {lessons[1] === undefined ? (
+          <div className="loader"></div>
+        ) : (
+          <>
+            <div className="lessonsContainer">
+              <div className="bg-white w-full">
+                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                  <div
+                    className="grid grid-cols-8 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-12">
+                    {myLessons.map((lesson) => (
+                      <a key={lesson.id} href={"lessons/" + lesson.id} className="group">
+                        <div
+                          className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                          <img
+                            src={lesson.thumbnail}
+                            className="h-full w-full object-cover object-center group-hover:opacity-75"
+                            alt="zaa"/>
+                        </div>
+                        <h3 className="mt-4 text-sm text-gray-700">{lesson.title}</h3>
+                        <p className="mt-1 text-lg font-medium text-gray-900">{lesson.slug}</p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </>
     )
+  }
 }

@@ -1,26 +1,37 @@
-import React, {Fragment, useEffect} from "react";
-import HeroSection from "../components/MainPage/Hero-Section/HeroSection.jsx";
-import CompanySection from "../components/MainPage/Company-section/Company.jsx";
-import AboutUs from "../components/MainPage/About-us/AboutUs.jsx";
-import Courses from "../components/MainPage/Courses-section/Courses.jsx";
-import ChooseUs from "../components/MainPage/Choose-us/ChooseUs.jsx";
-import Features from "../components/MainPage/Feature-section/Features.jsx";
-import FreeCourse from "../components/MainPage/Free-course-section/FreeCourse.jsx";
-import Newsletter from "../components/MainPage/Newsletter/Newsletter.jsx";
-import Footer from "../components/MainPage/Footer/Footer.jsx";
-export default function MainPage() {
+import {useStateContext} from "../context/ContextProvider.jsx";
+import Guest from "../components/Guest.jsx";
+import Default from "../components/Default.jsx";
+import Teacher from "../components/Teacher.jsx";
+import Admin from "../components/Admin.jsx";
 
-  return (
-      <Fragment>
-          <HeroSection/>
-          <CompanySection/>
-          <AboutUs/>
-          <Courses/>
-          <ChooseUs/>
-          <Features/>
-          <FreeCourse/>
-          <Newsletter/>
-          <Footer/>
-      </Fragment>
-  )
+export default function MainPage() {
+  const {token, role, setToken} = useStateContext()
+  if (!token) {
+    return (
+      <Guest>
+      Ana sayfe
+      </Guest>
+    )
+  }
+  else if(role == 0){
+    return (
+      <Default>
+        Default {role}
+      </Default>
+    )
+  }
+  else if(role == 1){
+    return (
+      <Teacher>
+        Teacher {role}
+      </Teacher>
+    )
+  }
+  else if(role == 2){
+    return (
+      <Admin>
+        Admin {role}
+      </Admin>
+    )
+  }
 }

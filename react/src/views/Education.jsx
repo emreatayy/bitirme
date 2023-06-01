@@ -1,74 +1,74 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import resim from "../assets/baydırman.jpeg";
-import {Link} from "react-router-dom";
-import axiosClient from "../axios.js";
+import { EffectCoverflow, Pagination, Navigation } from 'swiper';
+import slide_image_1 from '../assets/images/img_1.jpg';
+import slide_image_2 from '../assets/images/img_2.jpg';
+import slide_image_3 from '../assets/images/img_3.jpg';
+import slide_image_4 from '../assets/images/img_4.jpg';
+import slide_image_5 from '../assets/images/img_5.jpg';
+import slide_image_6 from '../assets/images/img_6.jpg';
+import slide_image_7 from '../assets/images/img_7.jpg';
 
 export default function lessons() {
-    const [favorites, setFavorites] = useState(null);
-    const [kontrol, setKontrol] = useState(false);
+  return (
+    <div className="container">
+      <Swiper
+        effect={'coverflow'}
+        grabCursor={true}
+        centeredSlides={true}
+        loop={true}
+        slidesPerView={'auto'}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 15,
+          depth: 50,
+          modifier: 25,
+        }}
+        pagination={{ el: '.swiper_pagination', clickable: true }}
+        navigation={{
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+          clickable: true,
+        }}
+        modules={[EffectCoverflow, Pagination, Navigation]}
+        className="swiper_container"
+      >
+        <SwiperSlide>
+          <img src={slide_image_1} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_2} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_3} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_4} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_5} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_6} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_7} alt="slide_image" />
+        </SwiperSlide>
 
-    useEffect(() => {
-        axiosClient.get('/MyFavorites')
-            .then(({data}) =>{
-                setFavorites(data);
-                setKontrol(true);
-            })
-    }, []);
-
-    return (
-        <div className="mainPage">
-            <h1>Eğitimler</h1>
-            {kontrol ? (
-                lessons[0] != null ? (
-                    <ul className="cards">
-                        {lessons.map((lesson, index) => {
-                            return (
-                                <div key={index}>
-                                    <li className="cards_item">
-                                        <div className="card">
-                                            <div className="card_image"><img src={resim} alt="baydrıman"/></div>
-                                            <div className="card_content">
-                                                {lesson.categories.map((category, index) => {
-                                                    return (
-                                                        <div key={index}>
-                                                            <button className="link"
-                                                                    onClick={() => onSubmit("?category=" + category.slug)}>
-                                                                <p>Category Name: {category.name}</p>
-                                                            </button>
-                                                        </div>
-                                                    );
-                                                })}
-                                                <h2 className="card_title">{lesson.lesson.title}</h2>
-                                                <button type="submit" onClick={() =>favorite(lesson.lesson.slug)}>
-                                                    favorilere ekle
-                                                </button>
-                                                <p className="card_text">{lesson.lesson.excerpt}</p>
-                                                <button onClick={() => onSubmit("?teacher="+lesson.lesson.user.username)}
-                                                        className="btn card_btn">
-                                                    <p className="card_text">
-                                                        {lesson.lesson.user.name + " " + lesson.lesson.user.surname}</p>
-                                                </button>
-                                                <button className="btn card_btn">
-                                                    <Link className="link"
-                                                          to={"/lesson/" + lesson.lesson.slug}>İncele</Link>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </div>
-                            );
-                        })}
-                    </ul>
-                ) : (
-                    <h6 className="text-center">Aradığınız eğitimler bulunamadı.</h6>
-                )
-            ) : (
-                <h6 className="text-center">Lütfen Bekleyiniz.</h6>
-            )}
+        <div className="slider-controler">
+          <div className="swiper-button-prev slider-arrow">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </div>
+          <div className="swiper-button-next slider-arrow">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </div>
+          <div className="swiper_pagination"></div>
         </div>
-    )
+      </Swiper>
+    </div>
+  );
 }

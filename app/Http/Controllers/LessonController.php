@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\CategoryClass;
 use App\Models\Lesson;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Casts\Json;
-use Illuminate\Database\Eloquent\Collection;
+use App\Models\UserClass;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Casts\Json;
+use App\Models\User;
 
 class LessonController extends Controller
 {
@@ -41,5 +38,37 @@ class LessonController extends Controller
             'lesson' => $lesson,
             'lectures' => $lectures
         ]);
+    }
+
+    public function contentLesson(Lesson $lesson, Request $request)
+    {
+        $user = $request->user();
+        $favorites = $user->favorites;
+        $control = false;
+        if($favorites != null) {
+            foreach ($favorites as $favorite) {
+                if ($favorite->lessons_id == $lesson->id) {
+                    $control = true;
+                    break;
+                }
+            }
+            if (!$control) {
+                return response(status: 403, content: $lesson->slug);
+            }
+            else{
+                $categories = $lesson->categories($lesson);
+                $lectures = $lesson->lectures($lesson);
+                return response
+                ([
+                    'categories' => $categories,
+                    'user' => $lesson->user,
+                    'lesson' => $lesson,
+                    'lectures' => $lectures
+                ]);
+            }
+        }
+        else{
+            return response(status: 403,content: $lesson->slug);
+        }
     }
 }

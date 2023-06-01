@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\CategoryClass;
 
 class Lesson extends Model
 {
     use HasFactory;
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, fn($query, $search)=>
         $query->where(fn($query) =>
         $query->where('title', 'like', '%' .$search. '%')
-        ->orWhere('excerpt', 'like', '%' .$search. '%'))
+            ->orWhere('excerpt', 'like', '%' .$search. '%'))
         );
 
         $query->when($filters['teacher'] ?? false, fn($query, $teacher)=>
@@ -27,9 +30,7 @@ class Lesson extends Model
         $query->whereHas('category_class', fn($query) =>
         $query->where('category_id', Lesson::getCategory($category))));
     }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
+
     public function getCategory($category){
         $id = Category::where('slug', $category)->pluck('id');
         if(count($id)){

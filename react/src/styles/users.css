@@ -1,0 +1,79 @@
+.userList::-webkit-scrollbar {
+  display: block;
+}
+. {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.userContainer{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userForm{
+  margin-top: 20px;
+  margin-left: 20px;
+  position: relative;
+  width: 30%;
+}
+.userList{
+  margin-top: 20px;
+  position: relative;
+  width: 98%;
+  height: 80vh;
+  max-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 4px;
+  text-align: center;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.userList table {
+  width: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.userList th, td {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: black;
+  text-align: center;
+}
+.userList thead th {
+  color: white;
+  text-align: center;
+}
+
+.userList thead {
+  background-color: #111e4f;
+}
+
+
+.userList tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.userList tbody td {
+  position: relative;
+}
+.userList tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}

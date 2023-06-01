@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Lesson;
 use App\Models\UserClass;
 use Illuminate\Http\Request;
