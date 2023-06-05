@@ -1,0 +1,37 @@
+.wrapper {
+  height: 94vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.typing-demo {
+  width: 28ch;
+  animation: typing 3s steps(25), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+.wrapperText{
+  width: 80%;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}

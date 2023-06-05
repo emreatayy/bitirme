@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "bootstrap": "^5.2.3",
-    "reactstrap": "^9.1.9",
-    "remixicon": "^3.2.0"
-  }
-}

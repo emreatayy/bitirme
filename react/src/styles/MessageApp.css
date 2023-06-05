@@ -1,0 +1,57 @@
+.message-app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .message-list {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    background-color: #f2f2f2;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+  
+  .message-form {
+    display: flex;
+  }
+  
+  .message-form input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  .message-form button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .message-form button:hover {
+    background-color: #0056b3;
+  }
+  .drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .drop-area.drag-over {
+    background-color: #eaf7ff;
+  }
+  
