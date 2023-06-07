@@ -1,7 +1,7 @@
 import {useStateContext} from "../context/ContextProvider.jsx";
 import axiosClient from "../axios.js";
 import React, {useEffect, useState} from "react";
-import {Link, Navigate, useLocation} from "react-router-dom";
+import {Link, Navigate, useFetcher, useLocation} from "react-router-dom";
 import Default from "../components/Default.jsx";
 import Guest from "../components/Guest.jsx";
 
@@ -70,23 +70,27 @@ const uri = useLocation().pathname;
     )
   }
   if(role == 0){
-    async function isFavorite() {
-      useEffect(() => {
-        axiosClient.get('/MyFavorites', {
+    function isFavorite(slug) {
+      axiosClient.get(`/isFavorite/${slug}`)
+        .then(({data}) => {
+          setMyFavorites(data)
         })
-          .then(({data}) => {
-            console.log(data)
-          })
-      })
     }
     return (
       <Default>
         {kontrol ? (
           <div>
-            {isFavorite()}
-            <button type="submit" onClick={() => favorite(lessons.lesson.slug)}>
-              favorilere ekle
-            </button><br/>
+            {isFavorite(lessons.lesson.slug)}
+            {myFavorites ? (
+              <button type="submit" onClick={() => favorite(lessons.lesson.slug)}>
+                favorilerden kaldır
+              </button>
+            ) : (
+              <button type="submit" onClick={() => favorite(lessons.lesson.slug)}>
+                favorilere ekle
+          </button>
+            )}
+            <br/>
             <Link to={"/lesson/content/"+lessons.lesson.slug}>Ders içeriğine eriş</Link>
             <p>Öğretmen: {lessons.user.name + " " + lessons.user.surname}</p>
             <p>Title: {lessons.lesson.title}</p>
@@ -112,5 +116,8 @@ const uri = useLocation().pathname;
         )}
       </Default>
     )
+  }
+  else{
+    return <Navigate to="/home"/>
   }
 }

@@ -16,6 +16,7 @@ import AboutUs from "./views/aboutUs.jsx"
 import AdminLayout from "./components/AdminLayout.jsx";
 import LessonLayout from "./components/lessonLayout.jsx"
 import AllLessons from "./views/allLessons.jsx";
+import AllTeachers from "./views/allTeachers.jsx";
 import Lesson from "./views/lesson.jsx";
 import MyLessons from "./views/MyLessons.jsx";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/lessons",
     element: <AllLessons/>
+  },
+  {
+    path: "/teachers",
+    element: <AllTeachers/>
   },
   {
     path: "/lesson/*",

@@ -1,8 +1,10 @@
-import axios from 'axios';
 import React, {useEffect, useState} from "react";
 import "../styles/users.css"
 import axiosClient from "../axios.js";
 import Admin from "../components/Admin.jsx";
+import Stack from "@mui/material/Stack";
+import {Alert} from "@mui/material";
+import {useTime, useTimer} from "react-timer-hook";
 
 export default function Users() {
   const [id, setId] = useState("");
@@ -11,7 +13,10 @@ export default function Users() {
   const [surname, setSurname] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState();
+  const [message, setMessage] = useState(null);
+  const [status, setStatus] = useState(null);
   const [users, setUsers] = useState([]);
+  const time = new Date();
 
   useEffect(() => {
     (async () => await Load())();
@@ -43,9 +48,19 @@ export default function Users() {
           surname: surname,
           username: username,
           role: role,
-        }).then(() => {
-        window.location.pathname = "/admin/users";
-      });
+        }).then(({data}) => {
+        setMessage(data)
+        setStatus("success")
+        axiosClient.get(
+          "/users")
+          .then(({data}) => {
+            setUsers(data);
+          })
+      })
+        .catch(() => {
+          setMessage("Kullanıcı Güncellenemedi.")
+          setStatus("error")
+        });
   }
   async function del(event){
     event.preventDefault();
@@ -58,13 +73,22 @@ export default function Users() {
       });
   }
 
+
   return (
       <Admin>
+        {message != null ? (
+          <Stack sx={{width: '290px', position: 'absolute', top: '650px', left: '1200px'}} spacing={2}>
+            <Alert severity={status} onClose={() => {setMessage(null)}}>{message}</Alert>
+          </Stack>
+        ) : (
+          <>
+          </>
+          )
+        }
       <div className="userContainer">
         <form className="userForm">
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div>
-
               <label htmlFor="first_name"
                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-blue">Ad</label>
               <input type="text" id="first_name"

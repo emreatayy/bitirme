@@ -116,3 +116,18 @@
 .lessText{
   display: none;
 }
+
+.lessNav{
+  background: #081A51;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+.lessNav a{
+  color: white;
+  margin: 15px;
+  padding: 10px;
+}
+.lessNav a:hover{
+  color: #728eff;
+}

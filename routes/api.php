@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::delete('/user', [AdminController::class, 'deleteUser']);
     Route::get('/lesson/content/{lesson:slug}' , [LessonController::class, 'contentLesson']);
     Route::post('/favorite', [UserController::class, 'favorite']);
+    Route::get('/isFavorite/{lesson:slug}', [UserController::class, 'isFavorite']);
     Route::get('/MyFavorites', [AuthController::class, 'MyFavorites']);
     Route::get('/MyLessons' , [AuthController::class, 'MyLessons']);
 });
@@ -30,5 +31,6 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::get('/lessons' , [LessonController::class, 'index']);
+Route::get('/teachers' , [UserController::class, 'index']);
 Route::get('/lesson/{lesson:slug}' , [LessonController::class, 'lesson']);
 

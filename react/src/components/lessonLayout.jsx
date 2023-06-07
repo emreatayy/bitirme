@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import ReactPlayer from "react-player";
 import {useStateContext} from "../context/ContextProvider.jsx";
 import axiosClient from "../axios.js";
-import {Navigate, useLocation} from "react-router-dom";
+import {Link, Navigate, useLocation} from "react-router-dom";
 import {useTimer} from "react-timer-hook";
 
 
@@ -96,8 +96,13 @@ if(kontrol) {
               </ul>
             </div>
             <div className="lessVideo">
+              <div className="lessNav">
+                <Link to="/home">ANASAYFA</Link>
+                <Link to={"/lesson/"+lessons.lesson.slug}>DERSE DÖN</Link>
+                <Link to={"/lessons?teacher="+lessons.user.username}>EĞİTMENİN DİĞER DERSLERİ</Link>
+              </div>
               <div className="lessText">Hoşgeldin</div>
-              <h2 className="text-white mt-2 text-xl">{videoTitle}</h2>
+              <h2 className="text-white text-xl">{videoTitle}</h2>
               <div className="lessVideoPlayer">
                 <ReactPlayer url={selectedVideo} controls={true} width="1100px" height="600px"/>
               </div>

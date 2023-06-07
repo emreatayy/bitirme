@@ -21,6 +21,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+        $query->where(fn($query) =>
+        $query->where('role', 1)
+            ->where('name', 'like', '%' . $search . '%')
+            ->orWhere('surname', 'like', '%' . $search . '%'))
+        );
+    }
     public function favorites()
     {
         return $this->hasMany(UserClass::class);
